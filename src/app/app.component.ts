@@ -4,14 +4,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  // external style
-  // styleUrls: ['./app.component.css']
-  // Inline style
-  styles: [`
-    h3 {
-      color: blue;
-    }
-  `]
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
 }
