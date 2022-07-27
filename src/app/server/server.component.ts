@@ -1,3 +1,4 @@
+import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,15 +9,20 @@ import { Component, OnInit } from '@angular/core';
 export class ServerComponent implements OnInit {
 
   serverId: number = 10;
-  serverStatus: string = "offline";
+  serverStatus: string = "Offline";
 
   getServerStatus() {
     return this.serverStatus;
   }
 
-  constructor() { }
+  constructor() { 
+    this.serverStatus = Math.random() > 0.5 ? 'Online' : 'Offline';
+  }
 
   ngOnInit(): void {
   }
 
+  getColor() {
+    return this.serverStatus === "Online" ? 'green' : 'red';
+  }
 }
