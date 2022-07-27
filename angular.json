@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": "cc1a6a6c-c535-494a-a77f-130f3f282608"
+    "analytics": "bbb3705f-bf0a-41e9-b0c8-64407057dac1"
   },
   "version": 1,
   "newProjectRoot": "projects",
@@ -11,9 +11,6 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
-        },
-        "@schematics/angular:application": {
-          "strict": true
         }
       },
       "root": "",
@@ -34,6 +31,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -43,13 +41,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ],
               "fileReplacements": [
@@ -102,6 +100,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
             "scripts": []
