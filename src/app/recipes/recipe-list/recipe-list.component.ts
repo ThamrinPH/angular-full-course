@@ -13,11 +13,11 @@ export class RecipeListComponent implements OnInit {
       "Nasi putih indonesia yang putih dan pulen", 
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Nasi_dibentuk_bulat.jpg/800px-Nasi_dibentuk_bulat.jpg"
       ),
-      new Recipe(
-        "Nasi Putih", 
-        "Nasi putih indonesia yang putih dan pulen", 
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Nasi_dibentuk_bulat.jpg/800px-Nasi_dibentuk_bulat.jpg"
-        )
+    new Recipe(
+      "Nasi Putih", 
+      "Nasi putih indonesia yang putih dan pulen", 
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Nasi_dibentuk_bulat.jpg/800px-Nasi_dibentuk_bulat.jpg"
+      )
   ];
 
   constructor() { }
