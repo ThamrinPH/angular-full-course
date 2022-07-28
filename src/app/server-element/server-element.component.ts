@@ -8,7 +8,7 @@ import { Server } from './server.model';
 })
 export class ServerElementComponent implements OnInit {
 
-  @Input() element: {
+  @Input('srvElement') element: {
     name: string, 
     type: string, 
     content: string
