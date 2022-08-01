@@ -6,37 +6,26 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  servers = [
+  accounts = [
     {
-      instanceType: 'medium',
-      name: 'Production Server',
-      status: 'stable',
-      started: new Date(15, 1, 2017)
+      name: 'Master Account',
+      status: 'active'
     },
     {
-      instanceType: 'large',
-      name: 'User Database',
-      status: 'stable',
-      started: new Date(15, 1, 2017)
+      name: 'Testaccount',
+      status: 'inactive'
     },
     {
-      instanceType: 'small',
-      name: 'Development Server',
-      status: 'offline',
-      started: new Date(15, 1, 2017)
-    },
-    {
-      instanceType: 'small',
-      name: 'Testing Environment Server',
-      status: 'stable',
-      started: new Date(15, 1, 2017)
+      name: 'Hidden Account',
+      status: 'unknown'
     }
   ];
-  getStatusClasses(server: {instanceType: string, name: string, status: string, started: Date}) {
-    return {
-      'list-group-item-success': server.status === 'stable',
-      'list-group-item-warning': server.status === 'offline',
-      'list-group-item-danger': server.status === 'critical'
-    };
+
+  onAccountAdded(newAccount: {name: string, status: string}) {
+    this.accounts.push(newAccount);
+  }
+
+  onStatusChanged(updateInfo: {id: number, newStatus: string}) {
+    this.accounts[updateInfo.id].status = updateInfo.newStatus;
   }
 }
