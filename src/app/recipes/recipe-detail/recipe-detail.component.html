@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <img [src]="recipe.imagePath" [alt]="recipe.name" class="img-responsive" style="max-height: 20vh;">
+    <img [src]="recipe.imagePath" [alt]="recipe.name" class="img-responsive" style="max-height: 50vh;">
   </div>
 </div>
 <div class="row">
@@ -17,7 +17,7 @@
         Manage Recipe <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
-        <li><a href="#">To Shopping List</a></li>
+        <li><a href="#" (click)="addToCart()">To Shopping List</a></li>
         <li><a href="#">Edit Recipe</a></li>
         <li><a href="#">Delete Recipe</a></li>
       </ul>
