@@ -18,11 +18,18 @@ export class ShoppingEditComponent implements OnInit {
   }
 
   onAddItem() {
+    if(this.nameInputRef.nativeElement.value == '' && this.amountInputRef.nativeElement.value == '') {
+        return;
+      }
+
     const newIngredient = new Ingredient(
       this.nameInputRef.nativeElement.value,
       this.amountInputRef.nativeElement.value
     );
-    
+
     this.shoppingListService.addIngredient(newIngredient);
+
+    this.nameInputRef.nativeElement.value = null;
+    this.amountInputRef.nativeElement.value = null;
   }
 }
