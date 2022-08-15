@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 })
 export class UserComponent implements OnInit, OnDestroy {
   user: {id: number, name: string};
-  paramsSUbscription: Subscription;
+  paramsSubscription: Subscription;
 
   constructor(private route: ActivatedRoute) { }
 
@@ -19,7 +19,7 @@ export class UserComponent implements OnInit, OnDestroy {
       name: this.route.snapshot.params['name']
     };
 
-    this.paramsSUbscription = this.route.params.subscribe( 
+    this.paramsSubscription = this.route.params.subscribe( 
       (params: Params) => {
         this.user.id = params['id'],
         this.user.name = params['name']
@@ -27,7 +27,7 @@ export class UserComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.paramsSUbscription.unsubscribe();
+    this.paramsSubscription.unsubscribe();
   }
 
 }
