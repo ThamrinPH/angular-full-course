@@ -17,14 +17,14 @@ export class ServerComponent implements OnInit {
     private serversService: ServersService) { }
 
   ngOnInit() {
-    if(this.route.snapshot.params['id']){
-      this.server = this.serversService.getServer(this.route.snapshot.params['id']);
-      console.log(this.server)
+    const id = this.route.snapshot.params['id'];
+
+    if(id){
+      this.server = this.serversService.getServer(+id);
   
       this.paramsSubscription = this.route.params.subscribe( 
         (params: Params) => {
-          this.server = this.serversService.getServer(params['id']);
-          console.log(this.server)
+          this.server = this.serversService.getServer(+params['id']);
       });
     }
   }
