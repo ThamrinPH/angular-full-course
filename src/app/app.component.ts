@@ -6,9 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  menu:string = 'recipe';
-  
-  onNavigate(menu: string){
-    this.menu = menu;
+  suggestUserName() {
+    const suggestedName = 'Superuser';
   }
 }
