@@ -7,8 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   menu:string = 'recipe';
-  
-  onNavigate(menu: string){
-    this.menu = menu;
-  }
 }
