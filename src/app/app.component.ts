@@ -14,7 +14,12 @@ export class AppComponent {
   }
 
   onSubmit() {
+    if(this.signupForm.invalid) {
+      console.log(this.signupForm.errors);
+    }
+    
     console.log(this.signupForm);
+    
   }
 
   // onSubmitForm(form: NgForm) {
