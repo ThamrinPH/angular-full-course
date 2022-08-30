@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -22,5 +22,9 @@ export class AppComponent implements OnInit{
 
   onSubmit() {
     console.log(this.signupForm)
+  }
+
+  getControls(attribute: string = "hobbies") {
+    return (this.signupForm.get(attribute) as FormArray).controls;
   }
 }
