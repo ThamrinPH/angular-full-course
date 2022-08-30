@@ -28,13 +28,32 @@ export class AppComponent implements OnInit{
     // this.signupForm.valueChanges.subscribe((value) => {
     //   console.log(value);
     // });
-    this.signupForm.statusChanges.subscribe((value) => {
-      console.log(value);
+    this.signupForm.statusChanges.subscribe((status) => {
+      console.log(status);
+    });
+
+    this.signupForm.setValue({
+      'userData': {
+        'username' : 'layla',
+        'email': 'layla.gunner@gmail.com'
+      },
+      'gender': 'female',
+      'hobbies': []
+    });
+
+    this.signupForm.patchValue({
+      'userData': {
+        'username' : 'Ruby',
+        'email': 'layla.gunner@gmail.com'
+      },
+      'gender': 'female',
+      'hobbies': []
     });
   }
 
   onSubmit() {
-    console.log(this.signupForm)
+    console.log(this.signupForm);
+    this.signupForm.reset();
   }
 
   getControls(attribute: string = "hobbies") {
