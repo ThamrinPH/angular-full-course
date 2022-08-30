@@ -42,17 +42,15 @@ export class AppComponent {
 
 
   onSubmit() {
-    if(this.signupForm.invalid) {
-      console.log(this.signupForm.errors);
-    }
-    
-    console.log(this.signupForm);
     this.submitted = true;
     this.user.username = this.signupForm.value.userData.username;
     this.user.email = this.signupForm.value.userData.email;
     this.user.secretQuestion = this.signupForm.value.secret;
     this.user.answer = this.signupForm.value.questionAnswer;
     this.user.gender = this.signupForm.value.gender;
+
+    this.signupForm.reset();
+    
   }
 
   // onSubmitForm(form: NgForm) {
