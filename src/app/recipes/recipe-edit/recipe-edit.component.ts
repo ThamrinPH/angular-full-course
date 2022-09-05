@@ -52,4 +52,8 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
       'description': new FormControl(recipeDescription),
     });
   }
+
+  onSubmit() {
+    console.log(this.recipeForm);
+  }
 }
