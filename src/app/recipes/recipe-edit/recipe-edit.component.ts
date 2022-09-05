@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Recipe } from '../recipe.model';
@@ -13,6 +14,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   editMode = false;
   recipe: Recipe;
   private routeSubs: Subscription;
+  recipeForm: FormGroup;
 
   constructor(private route: ActivatedRoute,
     private recipeService: RecipeService) { }
@@ -22,7 +24,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
       (params: Params) => {
         this.id = +params['id'];
         this.editMode = params['id'] != null;
-        this.recipe = this.recipeService.getRecipe(this.id);
+        this.initForm();
       }
     );
   }
@@ -31,4 +33,23 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     this.routeSubs.unsubscribe();
   }
 
+  private initForm() {
+    
+    let recipeName = '';
+    let recipeImagePath = '';
+    let recipeDescription = '';
+
+    if(this.editMode) {
+      const recipe = this.recipeService.getRecipe(this.id);
+      recipeName = recipe.name;
+      recipeImagePath = recipe.imagePath;
+      recipeDescription = recipe.description;
+    }
+
+    this.recipeForm = new FormGroup({
+      'name': new FormControl(recipeName),
+      'imagePath': new FormControl(recipeImagePath),
+      'description': new FormControl(recipeDescription),
+    });
+  }
 }
