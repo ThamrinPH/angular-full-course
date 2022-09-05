@@ -1,10 +1,52 @@
-<p>
-    recipe-edit works!
-    {{ recipe.name }}
-</p>
-<form>
-    <div class="col-12">
-        <label>Recipe Name:</label>
-        <input type="text" [value]="recipe.name" class="form-control">
+<div class="row">
+    <div class="col-xs-12">
+        <form>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <button class="btn btn-danger">Cancel</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <label for="imagePath">Image URL</label>
+                    <input type="text" id="imagePath" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <img src="" alt="" class="img-responsive">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" rows="3" class="form-control">
+
+                </textarea>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-xs-2">
+                            <input type="number" class="form-control">
+                        </div>
+                        <div class="col-xs-2">
+                            <button class="btn btn-danger">x</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-</form>
+</div>
