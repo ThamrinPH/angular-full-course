@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'filter'
+  name: 'filter',
+  pure: true // 'false' trigger onupdate 'true' to not trigger it everytime there is changes
 })
 export class FilterPipe implements PipeTransform {
 
