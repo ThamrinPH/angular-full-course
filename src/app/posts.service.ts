@@ -23,7 +23,7 @@ export class PostsService {
           this.url, 
           postData,
           {
-            observe: 'response' // body, response
+            observe: 'response',  // body, respons, events
           }
         ).subscribe( responseData => {
           console.log(responseData);
@@ -44,7 +44,8 @@ export class PostsService {
       this.url,
       {
         headers: new HttpHeaders({"Custom-Header": "Hello World!"}),
-        params: searchParams
+        params: searchParams,
+        responseType: 'json' // json, text, blob (for a file)
       }
     )
     .pipe(
@@ -71,7 +72,8 @@ export class PostsService {
     return this.http.delete(
       this.url,
       {
-        observe: 'events' // body, reponse, events
+        observe: 'events', // body, reponse, events
+        responseType: 'text' // json, text, blob (for a file)
       }
     ).pipe(tap( event => {
       if (event.type === HttpEventType.Sent) {
