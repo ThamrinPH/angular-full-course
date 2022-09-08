@@ -12,12 +12,12 @@ export class AppComponent implements OnInit {
 
   constructor(private http: HttpClient) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.onFetchPosts();
+  }
 
   onCreatePost(postData: { title: string; content: string }) {
     // Send Http request
-    console.log(postData);
-
     this.http
     .post(
         this.url+'posts.json', 
@@ -31,6 +31,11 @@ export class AppComponent implements OnInit {
 
   onFetchPosts() {
     // Send Http request
+    this.http
+      .get(this.url+'posts.json')
+      .subscribe( posts => {
+        console.log(posts);
+      })
   }
 
   onClearPosts() {
