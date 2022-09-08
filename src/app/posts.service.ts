@@ -1,8 +1,8 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpEventType, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Post } from './post.model';
-import { map, catchError } from 'rxjs/operators'
+import { map, catchError, tap } from 'rxjs/operators'
 import { Subject, throwError } from 'rxjs';
 
 @Injectable({
@@ -21,7 +21,10 @@ export class PostsService {
     this.http
       .post<{ name: string } >(
           this.url, 
-          postData
+          postData,
+          {
+            observe: 'response' // body, response
+          }
         ).subscribe( responseData => {
           console.log(responseData);
         }, 
@@ -65,6 +68,19 @@ export class PostsService {
   }
 
   deletePosts() {
-    return this.http.delete(this.url);
+    return this.http.delete(
+      this.url,
+      {
+        observe: 'events' // body, reponse, events
+      }
+    ).pipe(tap( event => {
+      if (event.type === HttpEventType.Sent) {
+        // Spinner is true
+        console.log(event);
+      }
+      if (event.type === HttpEventType.Response) {
+        console.log(event.body)
+      }
+    }));
   }
 }
