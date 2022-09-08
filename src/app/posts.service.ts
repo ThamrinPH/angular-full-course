@@ -43,4 +43,8 @@ export class PostsService {
       return postsArray;
     }))
   }
+
+  deletePosts() {
+    return this.http.delete(this.url);
+  }
 }
