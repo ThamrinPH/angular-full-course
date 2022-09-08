@@ -5,15 +5,23 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AuthInterceptorService } from './auth-interceptor.service';
+import { LogginInterceptorService } from './loggin-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, FormsModule, HttpClientModule],
-  providers: [{
-    provide: HTTP_INTERCEPTORS, 
-    useClass: AuthInterceptorService, 
-    multi: true
-  }],
+  providers: [ // urutan interceptor di eksekusi sesuai urutan yang kita tambahkan di providers, the order is matters
+    {    
+      provide: HTTP_INTERCEPTORS, 
+      useClass: AuthInterceptorService, 
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS, 
+      useClass: LogginInterceptorService, 
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
