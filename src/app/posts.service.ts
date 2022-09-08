@@ -3,11 +3,13 @@ import { Injectable } from '@angular/core';
 
 import { Post } from './post.model';
 import { map } from 'rxjs/operators'
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostsService {
+  error = new Subject<String>();
   private posts: Post[] = [];
   private url = 'https://ng-complete-guid-d64c8-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json';
 
@@ -22,6 +24,9 @@ export class PostsService {
           postData
         ).subscribe( responseData => {
           console.log(responseData);
+        }, 
+        error => {
+          this.error.next(error.message);
         }
       );
   }
