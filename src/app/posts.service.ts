@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Post } from './post.model';
@@ -33,7 +33,12 @@ export class PostsService {
 
   fetchPosts() {
     return this.http
-    .get<{ [key: string]: Post } >(this.url)
+    .get<{ [key: string]: Post } >(
+      this.url,
+      {
+        headers: new HttpHeaders({"Custom-Header": "Hello World!"})
+      }
+    )
     .pipe(
       // map( (responseData: { [key: string]: Post } ) => {
       map( (responseData) => {
