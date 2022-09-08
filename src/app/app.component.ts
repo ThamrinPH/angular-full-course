@@ -10,7 +10,8 @@ import { Post } from './post.model';
 })
 export class AppComponent implements OnInit {
   loadedPosts: Post[] = [];
-  url = 'https://ng-complete-guid-d64c8-default-rtdb.asia-southeast1.firebasedatabase.app/';
+  isFetching = false;
+  url = 'https://ng-complete-guid-d64c8-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json';
 
   constructor(private http: HttpClient) {}
 
@@ -22,7 +23,7 @@ export class AppComponent implements OnInit {
     // Send Http request
     this.http
     .post<{ name: string } >(
-        this.url+'posts.json', 
+        this.url, 
         postData
       ).subscribe( responseData => {
         console.log(responseData);
@@ -32,9 +33,10 @@ export class AppComponent implements OnInit {
   }
 
   onFetchPosts() {
+    this.isFetching = true;
     // Send Http request
     this.http
-      .get<{ [key: string]: Post } >(this.url+'posts.json')
+      .get<{ [key: string]: Post } >(this.url)
       .pipe(
         // map( (responseData: { [key: string]: Post } ) => {
         map( (responseData) => {
@@ -49,6 +51,7 @@ export class AppComponent implements OnInit {
         return postsArray;
       }))
       .subscribe( posts => {
+        this.isFetching = false;
         this.loadedPosts = posts;
       })
   }
