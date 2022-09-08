@@ -9,7 +9,7 @@ import { Post } from './post.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  loadedPosts = [];
+  loadedPosts: Post[] = [];
   url = 'https://ng-complete-guid-d64c8-default-rtdb.asia-southeast1.firebasedatabase.app/';
 
   constructor(private http: HttpClient) {}
