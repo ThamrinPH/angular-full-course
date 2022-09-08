@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Post } from './post.model';
@@ -32,11 +32,16 @@ export class PostsService {
   }
 
   fetchPosts() {
+    let searchParams = new HttpParams();
+    searchParams = searchParams.append('print', 'pretty');
+    searchParams = searchParams.append('custom', 'key');
+
     return this.http
     .get<{ [key: string]: Post } >(
       this.url,
       {
-        headers: new HttpHeaders({"Custom-Header": "Hello World!"})
+        headers: new HttpHeaders({"Custom-Header": "Hello World!"}),
+        params: searchParams
       }
     )
     .pipe(
