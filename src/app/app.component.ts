@@ -61,4 +61,8 @@ export class AppComponent implements OnInit, OnDestroy {
   onPostSelected(post: Post) {
     this.selectedPost = post;
   }
+
+  onHandleError() {
+    this.error = null
+  }
 }
