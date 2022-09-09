@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { RecipeService } from '../recipes/recipe.service';
 import { Subscription } from 'rxjs';
+import { Recipe } from '../recipes/recipe.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,15 @@ export class DataStorageService {
           console.log(response);
         }
       );
+  }
+
+  fetchRecipes() {
+    this.http
+      .get<Recipe[]>(this.url+'recipes.json')
+      .subscribe(
+        recipes => {
+          this.recipesService.setRecipes(recipes);
+        }
+      )
   }
 }
