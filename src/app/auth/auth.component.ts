@@ -14,6 +14,8 @@ export class AuthComponent implements OnInit, OnDestroy {
   email: string;
   password: string;
   authSubscription: Subscription;
+  isLoading = false;
+  error: string = null;
 
   constructor(private authService: AuthService) { }
 
@@ -35,6 +37,7 @@ export class AuthComponent implements OnInit, OnDestroy {
       return;
     }
 
+    this.isLoading = true;
     if (this.isLoginMode) {
       return;
     }else{
@@ -42,8 +45,11 @@ export class AuthComponent implements OnInit, OnDestroy {
         .subscribe( responseData => {
           console.log(responseData);
           this.loginForm.reset();
+          this.isLoading = false;
         }, error => {
-          console.log(error, error.message);
+          console.log(error.error.error)
+          this.error = error.message;
+          this.isLoading = false;
         });
     }
       
