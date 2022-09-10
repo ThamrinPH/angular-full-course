@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -46,9 +47,8 @@ export class AuthComponent implements OnInit, OnDestroy {
           console.log(responseData);
           this.loginForm.reset();
           this.isLoading = false;
-        }, error => {
-          console.log(error.error.error)
-          this.error = error.message;
+        }, errorMessage => {
+          this.error = errorMessage;
           this.isLoading = false;
         });
     }
