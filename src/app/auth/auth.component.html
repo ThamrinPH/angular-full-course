@@ -1,16 +1,16 @@
 <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
-        <form>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" autocomplete="off">
             <div class="form-group">
                 <label for="email">E-mail</label>
-                <input type="email" class="form-control">
+                <input type="email" class="form-control" formControlName="email">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control">
+                <input type="password" class="form-control" formControlName="password">
             </div>
             <div class="form-group">
-                <button class="btn btn-primary">{{ isLoginMode ? "Login" : "Sign Up" }}</button> |
+                <button class="btn btn-primary" [disabled]="!loginForm.valid && loginForm.touched">{{ isLoginMode ? "Login" : "Sign Up" }}</button> |
                 <button type="button" class="btn btn-primary" (click)="onSwitchMode()">Switch to {{ !isLoginMode ? "Login" : "Sign Up" }}</button>
             </div>
         </form>
