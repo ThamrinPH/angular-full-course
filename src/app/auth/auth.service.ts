@@ -2,25 +2,26 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-interface AuthResponseData {
+export interface AuthResponseData {
   idToken: string;
   email: string;
   refreshToken: string;
   expiresIn: string;
   localI: string;
+  registered?: boolean;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private endPoint = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyC2RSIpIh4IsMWN4olE-UWzNqxhWLE1GUM";
+  private api_key = "AIzaSyC2RSIpIh4IsMWN4olE-UWzNqxhWLE1GUM";
 
   constructor(private http: HttpClient) { }
 
   signUp(email: string, password: string) {
     return this.http
-      .post<AuthResponseData>(this.endPoint, {
+      .post<AuthResponseData>("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key="+this.api_key, {
         email: email,
         password: password,
         returnSecureToken: true
@@ -51,7 +52,13 @@ export class AuthService {
       }))
   }
 
-  login() {
-
+  login(email: string, password: string) {
+    return this.http
+    .post<AuthResponseData>("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key="+this.api_key, {
+        email: email,
+        password: password,
+        returnSecureToken: true
+      }
+    )
   }
 }

@@ -1,8 +1,7 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { AuthService } from './auth.service';
+import { Observable, Subscription } from 'rxjs';
+import { AuthResponseData, AuthService } from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -38,21 +37,26 @@ export class AuthComponent implements OnInit, OnDestroy {
       return;
     }
 
+    let authObs: Observable<AuthResponseData>
+
     this.isLoading = true;
+    this.error = null;
     if (this.isLoginMode) {
-      return;
+      authObs = this.authService.login(formData.email, formData.password);
     }else{
-      this.authSubscription = this.authService.signUp(formData.email, formData.password)
-        .subscribe( responseData => {
-          console.log(responseData);
-          this.loginForm.reset();
-          this.isLoading = false;
-        }, errorMessage => {
-          this.error = errorMessage;
-          this.isLoading = false;
-        });
+      authObs = this.authService.signUp(formData.email, formData.password);
     }
       
+    authObs.subscribe(
+      responseData => {
+        console.log(responseData);
+        this.loginForm.reset();
+        this.isLoading = false;
+      }, errorMessage => {
+        this.error = errorMessage;
+        this.isLoading = false;
+      }
+    );
       
   }
 
