@@ -30,15 +30,24 @@ export class AuthComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     const formData = this.loginForm.value;
-    console.log(formData);
-    this.authSubscription = this.authService.signUp(formData.email, formData.password)
-      .subscribe( responseData => {
-        console.log(responseData);
-        this.loginForm.reset();
-      }, error => {
-        console.log(error, error.message);
-      });
+    
+    if (!this.loginForm.valid) {
+      return;
+    }
 
+    if (this.isLoginMode) {
+      return;
+    }else{
+      this.authSubscription = this.authService.signUp(formData.email, formData.password)
+        .subscribe( responseData => {
+          console.log(responseData);
+          this.loginForm.reset();
+        }, error => {
+          console.log(error, error.message);
+        });
+    }
+      
+      
   }
 
   ngOnDestroy(): void {
