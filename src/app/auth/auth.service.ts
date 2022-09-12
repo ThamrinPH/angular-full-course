@@ -62,8 +62,6 @@ export class AuthService {
       expirationDate
     );
 
-    console.log(user);
-    
     this.user.next(user);
   }
 

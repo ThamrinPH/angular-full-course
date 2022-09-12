@@ -25,32 +25,24 @@ export class DataStorageService {
         recipes
       ).subscribe(
         response => {
-          console.log(response);
+          // console.log(response);
         }
       );
   }
 
   fetchRecipes(): Observable<Recipe[]> {
-    return this.authService.user.pipe(
-      take(1), 
-      exhaustMap( user => {
-          
-          return this.http.get<Recipe[]>(
-              this.url+'recipes.json',
-              {
-                params: new HttpParams().set('auth', user.token)
-              }
-            )
-        }
-      ),
-      map( recipes => {
-        return recipes.map( recipe => {
-          return { ...recipe, ingredients: recipe.ingredients ? recipe.ingredients : [] }
-        })
-      }),
-      tap(recipes => {
-        this.recipesService.setRecipes(recipes);
-      })
-    );
+    return this.http.get<Recipe[]>(
+        this.url+'recipes.json'
+        ).pipe(
+          map( recipes => {
+            return recipes.map( recipe => {
+              return { ...recipe, ingredients: recipe.ingredients ? recipe.ingredients : [] }
+            })
+          }),
+          tap(recipes => {
+            this.recipesService.setRecipes(recipes);
+          })
+        )
   }
+
 }
