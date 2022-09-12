@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { AuthResponseData, AuthService } from './auth.service';
 
@@ -8,16 +9,15 @@ import { AuthResponseData, AuthService } from './auth.service';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent implements OnInit, OnDestroy {
+export class AuthComponent implements OnInit {
   isLoginMode = false;
   loginForm: FormGroup;
   email: string;
   password: string;
-  authSubscription: Subscription;
   isLoading = false;
   error: string = null;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -49,18 +49,14 @@ export class AuthComponent implements OnInit, OnDestroy {
       
     authObs.subscribe(
       responseData => {
-        console.log(responseData);
         this.loginForm.reset();
         this.isLoading = false;
+        this.router.navigate(['/recipes']);
       }, errorMessage => {
         this.error = errorMessage;
         this.isLoading = false;
       }
     );
       
-  }
-
-  ngOnDestroy(): void {
-    this.authSubscription.unsubscribe();
   }
 }
