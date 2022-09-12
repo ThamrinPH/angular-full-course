@@ -1,8 +1,9 @@
-import { Component, ComponentFactoryResolver, OnDestroy, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AlertComponent } from '../shared/alert/alert.component';
+import { PlaceholderDirective } from '../shared/placeholder/placeholder.directive';
 import { AuthResponseData, AuthService } from './auth.service';
 @Component({
   selector: 'app-auth',
@@ -16,6 +17,7 @@ export class AuthComponent implements OnInit {
   password: string;
   isLoading = false;
   error: string = null;
+  @ViewChild(PlaceholderDirective, { static: false}) alertHost: PlaceholderDirective;
 
   constructor(private authService: AuthService, private router: Router, private componenetFactoryResolver: ComponentFactoryResolver) { }
 
@@ -68,6 +70,9 @@ export class AuthComponent implements OnInit {
   private showErrorAlert(message: string) {
     const alerCmpFacctory = this.componenetFactoryResolver.resolveComponentFactory(AlertComponent);
 
-    
+    const hostViewConainerRef = this.alertHost.viewContainerRef;
+    hostViewConainerRef.clear();
+
+    hostViewConainerRef.createComponent(alerCmpFacctory);
   }
 }
