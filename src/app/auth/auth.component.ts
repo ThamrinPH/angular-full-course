@@ -11,7 +11,7 @@ import { AuthResponseData, AuthService } from './auth.service';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-  isLoginMode = false;
+  isLoginMode = true;
   loginForm: FormGroup;
   email: string;
   password: string;
