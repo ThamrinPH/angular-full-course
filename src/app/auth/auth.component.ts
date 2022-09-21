@@ -20,7 +20,11 @@ export class AuthComponent implements OnInit, OnDestroy {
   private closeSub: Subscription;
   @ViewChild(PlaceholderDirective, { static: false}) alertHost: PlaceholderDirective;
 
-  constructor(private authService: AuthService, private router: Router, private componenetFactoryResolver: ComponentFactoryResolver) { }
+  constructor(
+    private authService: AuthService, 
+    private router: Router, 
+    private componenetFactoryResolver: ComponentFactoryResolver
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -35,7 +39,7 @@ export class AuthComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     const formData = this.loginForm.value;
-    
+    let redirectUrl = ['/'];
     if (!this.loginForm.valid) {
       return;
     }
@@ -62,6 +66,7 @@ export class AuthComponent implements OnInit, OnDestroy {
       }
     );
       
+      this.router.navigate(redirectUrl);
   }
 
   onHandleError() {
