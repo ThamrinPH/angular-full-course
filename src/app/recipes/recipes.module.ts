@@ -22,12 +22,14 @@ import { RecipesRoutingModule } from '../recipes-routing/recipes-routing.module'
     RecipeEditComponent
   ],
   exports:[
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
-    RecipeStartComponent,
-    RecipeEditComponent
+    // if we use them internally on this recipe module, we don't need to exports the component anymore
+    // because we called them in the recipe routing module
+    // RecipesComponent,
+    // RecipeListComponent,
+    // RecipeDetailComponent,
+    // RecipeItemComponent,
+    // RecipeStartComponent,
+    // RecipeEditComponent
   ],
   providers: [
     RecipeService
