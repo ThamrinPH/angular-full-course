@@ -16,7 +16,7 @@ import { SharedModule } from '../shared/shared.module';
     ReactiveFormsModule,
     RouterModule.forChild([
       {
-        path: 'login', component: AuthComponent
+        path: '', component: AuthComponent
       }
     ])
   ]
