@@ -40,5 +40,7 @@ firebase-debug.log
 Thumbs.db
 
 **/.angular/
-.angular/**
+.angular/*/
 .angular/*
+**/.angular/*/
+**/.angular/*
