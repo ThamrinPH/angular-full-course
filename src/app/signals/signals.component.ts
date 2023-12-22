@@ -9,16 +9,22 @@ import { Component, signal } from '@angular/core';
   imports: [NgFor],
 })
 export class SignalsComponent {
-  actions: string[] = [];
+  actions = signal<string[]>([]);
   counter = signal(0);
 
   increment() {
-    this.counter.update((oldValue) => oldValue + 1);
-    this.actions.push('INCREMENT');
+    // this.counter.update((oldValue) => oldValue + 1);
+    // this.counter.set(5); // setting a new value 
+    this.counter.set(this.counter() + 1); // alternative beside update
+
+    this.actions.update( (oldActions) => [...oldActions, 'INCREMENT']);
   }
 
   decrement() {
-    this.counter.update((oldValue) => oldValue -1);
-    this.actions.push('DECREMENT');
+    // this.counter.update((oldValue) => oldValue -1);
+    // this.counter.set(5); // setting a new value 
+    this.counter.set(this.counter() - 1); // alternative beside update
+
+    this.actions.update( (oldActions) => [...oldActions, 'DECREMENT']);
   }
 }
